@@ -43,6 +43,9 @@ namespace Shop.SpaceshipTest
             //kuidas teha automaatselt teeb guidi ???
             Guid wrongGuid =Guid.Parse(Guid.NewGuid().ToString());
 
+
+
+
             //Guid Wronggugid = Guid.NewGuid();
             //Random random = new Random();
             //int i = random.Next();
