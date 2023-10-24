@@ -1,59 +1,44 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Shop.ApplicationServices.Services;
 using Shop.Core.ServiceInterface;
 using Shop.Data;
-using Shop.SpaceshipTest.Mock;
-using Shop.SpaceshipTest.Macros;
+using RealEstateTest.Macros;
+using RealEstateTest.Mock;
+using Microsoft.Extensions.Hosting;
+using Shop.ApplicationServices.Services;
 
-
-
-namespace Shop.SpaceshipTest
+namespace ShopTARge22.RealEstateTest
 {
     public abstract class TestBase
     {
         protected IServiceProvider serviceProvider { get; }
 
-        protected TestBase() {
-
+        protected TestBase()
+        {
             var services = new ServiceCollection();
             SetupServices(services);
-            serviceProvider = services.BuildServiceProvider(); 
-
-
+            serviceProvider = services.BuildServiceProvider();
         }
+
         public void Dispose()
         {
 
         }
-        protected T Svc<T> ()
-         {
-            return serviceProvider.GetService<T>();
-
-
-        }
-
-        protected T Macro<T>() where T: IMacros
+        protected T Svc<T>()
         {
             return serviceProvider.GetService<T>();
         }
 
-
-
+        protected T Macro<T>() where T : IMacros
+        {
+            return serviceProvider.GetService<T>();
+        }
         public virtual void SetupServices(IServiceCollection services)
         {
-
-            services.AddScoped<ISpaceshipServices, SpaceshipServices>();
+            services.AddScoped<IRealEstateServices, RealEstatesServices>();
             services.AddScoped<IFileServices, FileServices>();
-            services.AddScoped<IHostEnvironment, MockIHostEnvironment>();
-
-
-
-
-
-
+            services.AddScoped<IHostEnvironment, MockHostEnvironment>();
 
             services.AddDbContext<ShopContext>(x =>
             {
@@ -65,21 +50,15 @@ namespace Shop.SpaceshipTest
         }
         private void RegisterMacros(IServiceCollection services)
         {
-            var macrosBaseType = typeof(IMacros);
+            var macroBaseType = typeof(IMacros);
 
-
-            var macros = macrosBaseType.Assembly.GetTypes()
-                .Where(x=>macrosBaseType.IsAssignableFrom(x) && !x.IsInterface
-                && !x.IsAbstract);
+            var macros = macroBaseType.Assembly.GetTypes()
+                .Where(x => macroBaseType.IsAssignableFrom(x) && !!x.IsInterface && !x.IsAbstract);
 
             foreach (var macro in macros)
             {
                 services.AddSingleton(macro);
-
             }
-
-
         }
-
     }
 }

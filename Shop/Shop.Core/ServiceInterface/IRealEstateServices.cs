@@ -1,5 +1,6 @@
 ﻿using Shop.Core.Domain;
 using Shop.Core.Dto;
+using Shop.Core.ServiceInterface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,5 @@ namespace Shop.Core.ServiceInterface
         Task<RealEstate> Update(RealEstateDto dto);
 
         Task<RealEstate> Delete(Guid id);
-        
     }
 }

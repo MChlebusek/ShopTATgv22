@@ -1,7 +1,6 @@
-﻿namespace Shop.SpaceshipTest.Macros
+﻿namespace RealEstateTest.Macros
 {
     public interface IMacros
     {
-
     }
 }

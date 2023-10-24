@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Shop.ApplicationServices.Services
 {
     public class RealEstatesServices : IRealEstateServices
@@ -76,11 +77,7 @@ namespace Shop.ApplicationServices.Services
 
             };
 
-            if (dto.Files != null)
-            {
-                _fileServices.UploadFilesToDatabase(dto, domain);
-
-            }
+             _fileServices.UploadFilesToDatabase(dto, domain);
 
             _context.RealEstates.Update(domain);
             await _context.SaveChangesAsync();
@@ -122,9 +119,5 @@ namespace Shop.ApplicationServices.Services
 
             return result;
         }
-        
-
     }
-
-
 }

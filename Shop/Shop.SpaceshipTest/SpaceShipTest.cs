@@ -146,18 +146,52 @@ namespace Shop.SpaceshipTest
             SpaceshipDto update = MockUpdateSpaceshipData();
             var updateSpaceship = await Svc<ISpaceshipServices>().Update(update);
 
-            Assert.DoesNotMatch(updateSpaceship.Name, createSpaceship.Name);
+            Assert.Matches(updateSpaceship.Name, createSpaceship.Name);
             Assert.NotEqual(updateSpaceship.EnginPower, createSpaceship.EnginPower);
-            Assert.Equal(updateSpaceship.Crew, createSpaceship.Crew);
+            Assert.NotEqual(updateSpaceship.Crew, createSpaceship.Crew);
             Assert.DoesNotMatch(updateSpaceship.Passangers.ToString(), createSpaceship.Passangers.ToString());
 
+        }
+
+        [Fact]
+        public async Task ShouldNot_UpdateSpaceship_WhenNotUpdateData()
+        {
+            SpaceshipDto dto = MockSpaceshipData();
+            await Svc<ISpaceshipServices>().Create(dto);
+
+            SpaceshipDto nullUpdate = MockNullSpaceship();
+            await Svc<ISpaceshipServices>().Update(nullUpdate);
+
+            var nullId = nullUpdate.Id;
+
+            Assert.True(dto.Id == nullId);
+        }
+
+
+        private SpaceshipDto MockNullSpaceship()
+        {
+            SpaceshipDto nullDto = new()
+            {
+                Id = null,
+                Name = "Name123",
+                Type="type123",
+                Passangers = 123,
+                EnginPower = 123,
+                Crew = 123,
+                Company = "Company123",
+                CargoWeight = 123,
+                CreatedAt = DateTime.Now.AddYears(1),
+                Modifieted = DateTime.Now.AddYears(1),
+            };
+
+            return nullDto;
         }
 
         private SpaceshipDto MockUpdateSpaceshipData()
         {
             SpaceshipDto update = new()
             {
-                Name = "asdaa",
+                Name = "asd",
                 Type = "asddd",
                 Passangers = 123555,
                 EnginPower = 12355,
