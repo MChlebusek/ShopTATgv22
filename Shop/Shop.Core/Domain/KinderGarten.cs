@@ -18,10 +18,6 @@ namespace Shop.Core.Domain
 
         public string Teacher { get; set; }
 
-
-
-        //database
-
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }

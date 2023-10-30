@@ -130,6 +130,7 @@ namespace Shop.SpaceshipTest
             //Assert.Equal(result.CreatedAt, createRealEstate.CreatedAt);
         }
 
+        [Fact]
         public async Task ShouldNot_UpdateRealEstate_WhenNotUpdateData()
         {
             RealEstateDto dto = MockRealEstateData();
