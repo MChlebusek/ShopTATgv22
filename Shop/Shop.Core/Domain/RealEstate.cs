@@ -20,5 +20,8 @@ namespace Shop.Core.Domain
 
         public DateTime CreatedAt { get; set; } 
         public DateTime UpdatedAt { get; set; }
+
+
+        public List<FilesToDatabase> Files { get; set; } 
     }
 }
