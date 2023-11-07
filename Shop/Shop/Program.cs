@@ -25,7 +25,7 @@ builder.Services.AddScoped<IRealEstateServices, RealEstatesServices>();
 //add dependence interface and service class
 builder.Services.AddScoped<IKindergartenServices, KinderGartenServices>();
 
-
+builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 
 
 
