@@ -27,7 +27,7 @@ builder.Services.AddScoped<IKindergartenServices, KinderGartenServices>();
 
 builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 
-
+builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
 
 
 
