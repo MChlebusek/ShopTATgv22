@@ -29,6 +29,8 @@ builder.Services.AddScoped<IWeatherForecastServices, WeatherForecastServices>();
 
 builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
 
+builder.Services.AddScoped<ICocktailServices, CocktailServices>();
+
 
 
 
