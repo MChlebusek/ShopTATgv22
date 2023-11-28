@@ -31,16 +31,15 @@ builder.Services.AddScoped<IChuckNorrisServices, ChuckNorrisServices>();
 
 builder.Services.AddScoped<ICocktailServices, CocktailServices>();
 
+builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 
 
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -68,11 +67,4 @@ app.MapControllerRoute(
 
 app.Run();
 
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//        name: "realstates",
-//        pattern: "Realstates/{action=Index}/{id?}",
-//        defaults: new { controller = "Realstates" });
-//    // Other route configurations...
-//});
+

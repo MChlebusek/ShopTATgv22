@@ -1,0 +1,43 @@
+﻿@model Shop.Models.AccuWeather.AccuWeatherViewModel
+
+<div class="container">
+
+    <h2>Accuweather weather for the selected city</h2>
+    <h1>@Html.DisplayFor(model =>model.City)</h1>
+
+    <hr />
+    <dl class="row">
+        <div class="form-group row">
+            <label asp-for="City" class="col-sm-2 col-form-label">City</label>
+            @Html.DisplayFor(model =>model.City)
+
+        </div>
+        <div class="form-group row">
+            <label asp-for="Temperature" class="col-sm-2 col-form-label">Temperature</label>
+            @Html.DisplayFor(model =>model.Temperature) °C
+        </div>
+
+        <div class="form-group row">
+            <label asp-for="RealFeelTemperature" class="col-sm-2 col-form-label">Temp feels like</label>
+            @Html.DisplayFor(model =>model.RealFeelTemperature) °C
+        </div>
+        <div class="form-group row">
+            <label asp-for="WeatherText" class="col-sm-2 col-form-label">Weather Condition</label>
+            @Html.DisplayFor(model =>model.WeatherText)
+        </div>
+        <div class="form-group row">
+            <label asp-for="Pressure" class="col-sm-2 col-form-label">Pressure</label>
+            @Html.DisplayFor(model =>model.Pressure) mb
+        </div>
+        <div class="form-group row">
+            <label asp-for="RelativeHumidity" class="col-sm-2 col-form-label">Humidity</label>
+            @Html.DisplayFor(model =>model.RelativeHumidity)
+        </div>
+        <div class="form-group row">
+            <label asp-for="WindSpeed" class="col-sm-2 col-form-label">Wind Speed</label>
+            @Html.DisplayFor(model =>model.WindSpeed) km/h
+        </div>
+    </dl>
+    <a asp-action="Index" asp-controller="AccuWeather" class="btn btn-danger">Back</a>
+
+</div> 
