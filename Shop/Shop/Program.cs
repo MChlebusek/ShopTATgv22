@@ -4,6 +4,7 @@ using Shop.ApplicationServices.Services;
 using Shop.Core.Domain;
 using Shop.Core.ServiceInterface;
 using Shop.Data;
+using Shop.Hubs;
 
 
 
@@ -36,6 +37,8 @@ builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 
 builder.Services.AddScoped<IEmailServices, EmailServices>();
 
+builder.Services.AddSignalR();
+
 
 
 var app = builder.Build();
@@ -67,6 +70,8 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
 
