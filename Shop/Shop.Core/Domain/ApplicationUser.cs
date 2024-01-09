@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shop.Core.Domain
 {
-    public class ApplicationUser : IdentityUser
+    public class ApplicationUser : Microsoft.AspNetCore.Identity.IdentityUser
     {
         public string City { get; set; }
     }

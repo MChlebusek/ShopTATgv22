@@ -10,20 +10,15 @@ namespace Shop.ApplicationServices.Services
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
 
-        public AccountsServices
-            (
-                UserManager<ApplicationUser> userManager,
-                SignInManager<ApplicationUser> signInManager
-            )
+        public AccountsServices(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
         }
 
-
         public async Task<ApplicationUser> Register(ApplicationUserDto dto)
         {
-            var user = new ApplicationUser
+            var user = new ApplicationUser()
             {
                 UserName = dto.Email,
                 Email = dto.Email,
@@ -48,9 +43,8 @@ namespace Shop.ApplicationServices.Services
 
             if (user == null)
             {
-                string errorMessage = $"The User Id {userId} is not valid";
+                string errorMessage = $"The user Id {userId} is not valid";
             }
-
             var result = await _userManager.ConfirmEmailAsync(user, token);
 
             return user;
@@ -61,7 +55,6 @@ namespace Shop.ApplicationServices.Services
             dto.ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
 
             var user = await _userManager.FindByEmailAsync(dto.Email);
-
 
             return user;
         }

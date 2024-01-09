@@ -5,8 +5,8 @@ using Shop.Core.Domain;
 using Shop.Core.ServiceInterface;
 using Shop.Data;
 using Shop.Hubs;
-using Shop.Core.Domain;
 using Microsoft.AspNetCore.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +37,28 @@ builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
 
 builder.Services.AddSignalR();
+
+builder.Services.AddDbContext<ShopContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("ShopTARge22")));
+//options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-        options.SignIn.RequireConfirmedAccount = true);
+{
+    options.SignIn.RequireConfirmedAccount = true;
+    options.Password.RequiredLength = 3;
+
+    options.Lockout.MaxFailedAccessAttempts = 2;
+    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+})
+    .AddEntityFrameworkStores<ShopContext>()
+    .AddTokenProvider<DataProtectorTokenProvider<ApplicationUser>>("CustomEmailConfirmaation")
+    .AddDefaultUI();
+
+//All tokens
+builder.Services.Configure<DataProtectionTokenProviderOptions>(o =>
+o.TokenLifespan = TimeSpan.FromHours(5));
+
+
+
 
 
 

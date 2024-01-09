@@ -6,17 +6,19 @@ namespace Shop.Models.Accounts
     {
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
+        [Display(Name = "Current Password")]
         public string CurrentPassword { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "New Password")]
         public string NewPassword { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "Confirm Password")]
+        [Compare("NewPassword", ErrorMessage = "The password does not match")]
         public string ConfirmPassword { get; set; }
     }
 }
+

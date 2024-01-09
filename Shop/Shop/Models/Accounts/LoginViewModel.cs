@@ -18,6 +18,6 @@ namespace Shop.Models.Accounts
 
         public string ReturnUrl { get; set; }
 
-        public IList<AuthenticationScheme> ExternalLogins { get; set; }
+        public IList<AuthenticationScheme>? ExternalLogins { get; set; }
     }
 }
