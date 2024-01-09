@@ -5,9 +5,8 @@ using Shop.Core.Domain;
 using Shop.Core.ServiceInterface;
 using Shop.Data;
 using Shop.Hubs;
-
-
-
+using Shop.Core.Domain;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -38,6 +37,8 @@ builder.Services.AddScoped<IAccuWeatherServices, AccuWeatherServices>();
 builder.Services.AddScoped<IEmailServices, EmailServices>();
 
 builder.Services.AddSignalR();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+        options.SignIn.RequireConfirmedAccount = true);
 
 
 
